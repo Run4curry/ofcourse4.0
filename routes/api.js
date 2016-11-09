@@ -3,7 +3,7 @@ var courseSchema = require('./schema');
 var jsonfile = require('jsonfile');
 var catalog_path = 'course_catalog.json';
 
-//mongoose.connect(process.env.DB_URL);
+mongoose.connect(process.env.DB_URL);
 
 
 // POST - creates a comment for that course
