@@ -22,6 +22,7 @@ function UcsdCtrl($scope, $http, $location) {
   };
 
 function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore) {
+
   $http.get('/api/UCSD/' + $routeParams.id)
     .success(function(data) {
       $scope.courseAbbreviation = data['course_abbreviation'];
@@ -30,26 +31,48 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
 
   $scope.upvotefunc = function(index , obj_id){
     if($cookieStore.get(obj_id) == 1){
-      console.log("returned upvotefunc");
-      return;
+      $http.put('/api/' + $routeParams.id + '/' + index + '/' + '-1').success(function(data){
+        $cookieStore.put(obj_id, 0);
+        console.log($cookieStore.get(obj_id));
+        $route.reload();
+      });
+    }
+    else if($cookieStore.get(obj_id) == -1){
+      $http.put('/api/' + $routeParams.id + '/' + index +'/' + '2').success(function(data){
+        $cookieStore.put(obj_id, 1);
+        console.log($cookieStore.get(obj_id));
+        $route.reload();
+      });
     }
     else{
     $http.put('/api/' + $routeParams.id + '/'+ index + '/' + '1').success(function(data){
       $cookieStore.put(obj_id, 1);
-      $route.reload();
+      console.log($cookieStore.get(obj_id));
+       $route.reload();
     });
   }
   };
 
    $scope.downvotefunc = function(index , obj_id){
     if($cookieStore.get(obj_id) == -1){
-      console.log("returned downvotefunc");
-      return;
+      $http.put('/api/' + $routeParams.id + '/' + index + '/' + '1').success(function(data){
+      $cookieStore.put(obj_id, 0);
+      console.log($cookieStore.get(obj_id));
+       $route.reload();
+    });
+    }
+    else if($cookieStore.get(obj_id) == 1){
+      $http.put('/api/' + $routeParams.id + '/' + index + '/' + '-2').success(function(data){
+        $cookieStore.put(obj_id, -1);
+        console.log($cookieStore.get(obj_id));
+         $route.reload();
+      });
     }
     else{
     $http.put('/api/' + $routeParams.id + '/' + index + '/' + '-1').success(function(data){
       $cookieStore.put(obj_id,-1);
-      $route.reload();
+      console.log($cookieStore.get(obj_id));
+       $route.reload();
     });
   }
   };
