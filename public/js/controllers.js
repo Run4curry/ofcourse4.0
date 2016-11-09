@@ -12,8 +12,13 @@ function IndexCtrl($scope, $http) {
 function UcsdCtrl($scope, $http, $location) {
     $http.get('/api/UCSD')
       .success(function(data) {
+        $scope.quantity = 50;
         $scope.courseList = data;
       });
+
+    $scope.loadMore = function() {
+      $scope.quantity += 50;
+    };
   };
 
 function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore) {
