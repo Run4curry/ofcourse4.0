@@ -3,7 +3,8 @@ var courseSchema = require('./schema');
 var jsonfile = require('jsonfile');
 var catalog_path = 'course_catalog.json';
 
-mongoose.connect(process.env.DB_URL);
+//mongoose.connect(process.env.DB_URL);
+mongoose.connect("mongodb://ofcourseSD:cse170xd@ds047085.mlab.com:47085/ofcoursedb");
 
 // POST - creates a comment for that course
 exports.postComment = function (req, res) {
@@ -18,16 +19,40 @@ exports.postComment = function (req, res) {
       // TODO: returns the new post
       res.json(newpost);
     });
-/*var id = req.params.id;
-  if (id >= 0 && id < data.posts.length) {
-    res.json({
-      post: data.posts[id]
-    });
-  } else {
-    res.json(false);
-  }*/
 };
+exports.postSubComment = function(req,res) {
+  var courseId = req.params.course;
+  var subcomment = req.params.subcomment;
+  var tobeconvertedindex = req.params.postind;
+  var indexval = parseInt(tobeconvertedindex);
+  
+  courseSchema.findOne({course_abbreviation : courseId},
+    function(err,data){
+      data.posts[indexval].subcomments.push({subcomment : subcomment});
+      data.posts[indexval].subvotes.push({subvote : 0});
+      data.save();
+      res.json(data.posts);
+    });
+};
+exports.subupvotedownvote = function(req,res){
+  var courseId = req.params.course;
+  var tobeconvertedindex = req.params.ind;
+  var tobeconvertedindex2 = req.params.ind2;
+  var tobeconvertedvalue = req.params.val;
+  var numericalval = parseInt(tobeconvertedvalue);
+  var numericalindex = parseInt(tobeconvertedindex);
+  var numericalindex2 = parseInt(tobeconvertedindex2);
 
+  courseSchema.findOne({course_abbreviation : courseId}, 
+    function(err,data){
+      data.posts[numericalindex].subvotes[numericalindex2].subvote =
+        data.posts[numericalindex].subvotes[numericalindex2].subvote +
+        numericalval;
+        console.log( data.posts[numericalindex].subvotes[numericalindex2].subvote);
+        data.save();
+        res.json(data.posts);
+    });
+};
 exports.upvotedownvote = function(req,res) {
   var courseId = req.params.course;
   var index = req.params.ind;
@@ -35,6 +60,7 @@ exports.upvotedownvote = function(req,res) {
   var tobeconvertedvalue = req.params.val;
   var numericalval = parseInt(tobeconvertedvalue);
   var numericalindex = parseInt(tobeconvertedindex);
+  
   courseSchema.findOne({course_abbreviation : courseId},
     function(err,data){
       data.posts[numericalindex].vote = data.posts[numericalindex].vote + numericalval;

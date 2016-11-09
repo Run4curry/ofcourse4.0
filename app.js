@@ -44,7 +44,9 @@ app.get('/partials/:name', routes.partials);
 app.put('/api/UCSD/:course/:mainpost', api.postComment);
 app.get('/api/UCSD', api.getCourses);
 app.get('/api/UCSD/:course', api.getOneCourse);
+app.put('/api/UCSD/:course/:subcomment/:postind' , api.postSubComment);
 app.put('/api/:course/:ind/:val' , api.upvotedownvote);
+app.put('/api/:course/:ind/:ind2/:val' , api.subupvotedownvote);
 
 // redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
