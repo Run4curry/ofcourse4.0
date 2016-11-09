@@ -5,7 +5,6 @@ var catalog_path = 'course_catalog.json';
 
 mongoose.connect(process.env.DB_URL);
 
-
 // POST - creates a comment for that course
 exports.postComment = function (req, res) {
   var courseId = req.params.course;
@@ -20,6 +19,28 @@ exports.postComment = function (req, res) {
       res.json(newpost);
     });
 };
+
+// GET - subcomments for comment
+exports.getSubComments = function(req, res) {
+  var courseId = req.params.course;
+  var index = parseInt(req.params.postind);
+  var data = {error : false};
+
+  courseSchema.findOne({
+    course_abbreviation: courseId
+  }, function(err, course) {
+    if (err) {
+      data.error = true;
+      data.errorMessage = err;
+    } else {
+      data.data = course.posts[index].subcomments;
+    }
+    
+    res.json(data);
+  });
+};
+
+// POST - create a subcomment for the comment
 exports.postSubComment = function(req,res) {
   var courseId = req.params.course;
   var subcomment = req.params.subcomment;
@@ -34,6 +55,8 @@ exports.postSubComment = function(req,res) {
       res.json(data.posts);
     });
 };
+
+// PUT - Update vote count for sub comment
 exports.subupvotedownvote = function(req,res){
   var courseId = req.params.course;
   var tobeconvertedindex = req.params.ind;
@@ -53,6 +76,8 @@ exports.subupvotedownvote = function(req,res){
         res.json(data.posts);
     });
 };
+
+// PUT - Update vote count
 exports.upvotedownvote = function(req,res) {
   var courseId = req.params.course;
   var index = req.params.ind;
@@ -91,16 +116,4 @@ exports.getOneCourse = function (req, res) {
   }, function(err, data) {
     res.json(data);
   });
-};
-
-// DELETE
-exports.deletePost = function (req, res) {
-  var id = req.params.id;
-
-  if (id >= 0 && id < data.posts.length) {
-    data.posts.splice(id, 1);
-    res.json(true);
-  } else {
-    res.json(false);
-  }
 };
