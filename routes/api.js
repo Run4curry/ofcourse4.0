@@ -4,7 +4,7 @@ var jsonfile = require('jsonfile');
 var catalog_path = 'course_catalog.json';
 
 //mongoose.connect(process.env.DB_URL);
-mongoose.connect("mongodb://ofcourseSD:cse170xd@ds047085.mlab.com:47085/ofcoursedb");
+
 
 // POST - creates a comment for that course
 exports.postComment = function (req, res) {
