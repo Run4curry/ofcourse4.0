@@ -34,21 +34,21 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
       $http.put('/api/' + $routeParams.id + '/' + index + '/' + '-1').success(function(data){
         $cookieStore.put(obj_id, 0);
         console.log($cookieStore.get(obj_id));
-        $route.reload();
+        $scope.postList = data;
       });
     }
     else if($cookieStore.get(obj_id) == -1){
       $http.put('/api/' + $routeParams.id + '/' + index +'/' + '2').success(function(data){
         $cookieStore.put(obj_id, 1);
         console.log($cookieStore.get(obj_id));
-        $route.reload();
+        $scope.postList = data; 
       });
     }
     else{
     $http.put('/api/' + $routeParams.id + '/'+ index + '/' + '1').success(function(data){
       $cookieStore.put(obj_id, 1);
       console.log($cookieStore.get(obj_id));
-       $route.reload();
+       $scope.postList = data; 
     });
   }
   };
@@ -56,23 +56,24 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
    $scope.downvotefunc = function(index , obj_id){
     if($cookieStore.get(obj_id) == -1){
       $http.put('/api/' + $routeParams.id + '/' + index + '/' + '1').success(function(data){
+      console.log("I am going back to original form");
       $cookieStore.put(obj_id, 0);
       console.log($cookieStore.get(obj_id));
-       $route.reload();
+       $scope.postList = data;
     });
     }
     else if($cookieStore.get(obj_id) == 1){
       $http.put('/api/' + $routeParams.id + '/' + index + '/' + '-2').success(function(data){
         $cookieStore.put(obj_id, -1);
         console.log($cookieStore.get(obj_id));
-         $route.reload();
+         $scope.postList = data; 
       });
     }
     else{
     $http.put('/api/' + $routeParams.id + '/' + index + '/' + '-1').success(function(data){
       $cookieStore.put(obj_id,-1);
       console.log($cookieStore.get(obj_id));
-       $route.reload();
+       $scope.postList = data; 
     });
   }
   };
@@ -82,7 +83,8 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     if ($scope.commentText && $scope.commentText.trim()) {
       $http.put('/api/UCSD/' + $routeParams.id + '/' + $scope.commentText)
         .success(function(data) {
-          $route.reload();
+          $scope.postList = data; 
+          $scope.commentText = null;
         });
     } else {
       // Show error message?
