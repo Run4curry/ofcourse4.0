@@ -16,7 +16,11 @@ exports.postComment = function (req, res) {
     {safe: true, upsert: true},
     function(err, newpost){
       // TODO: returns the new post
-      res.json(newpost);
+    });
+  courseSchema.findOne({course_abbreviation : courseId},
+    function(err,data){
+
+      res.json(data.posts);
     });
 };
 
@@ -89,12 +93,8 @@ exports.upvotedownvote = function(req,res) {
   courseSchema.findOne({course_abbreviation : courseId},
     function(err,data){
       data.posts[numericalindex].vote = data.posts[numericalindex].vote + numericalval;
-      data.save();         
-    });
-  courseSchema.findOne({course_abbreviation : courseId},
-    function(err,data){
-      console.log(data.posts);
-      res.json(data.posts);
+      data.save();
+      res.json(data.posts);         
     });
 };
 
