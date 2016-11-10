@@ -69,7 +69,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
       console.log($cookieStore.get(obj_id));
        $scope.postList = data; 
     });
-  }
+    }
   };
 
    $scope.downvotefunc = function(index , obj_id){
@@ -94,9 +94,61 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
       console.log($cookieStore.get(obj_id));
        $scope.postList = data; 
     });
-  }
+    }
   };
 
+  $scope.subupvotefunc = function(parentindex, childindex, obj_id){
+    //console.log("atleastiprinted!!~~");
+    //console.log(parentindex);
+    //console.log(childindex);
+    //console.log(obj_id);
+    if($cookieStore.get(obj_id) == 1){
+      $http.put('/api/' + $routeParams.id + '/' + parentindex + '/' + childindex + '/' + '-1').success(function(data){
+        $cookieStore.put(obj_id, 0);
+        console.log($cookieStore.get(obj_id));
+        $scope.postList = data;
+      });
+    }
+    else if($cookieStore.get(obj_id) == -1){
+      $http.put('/api/' + $routeParams.id + '/' + parentindex + '/' + childindex + '/' + '2').success(function(data){
+        $cookieStore.put(obj_id, 1);
+        console.log($cookieStore.get(obj_id));
+        $scope.postList = data; 
+      });
+    }
+    else{
+    $http.put('/api/' + $routeParams.id + '/'+ parentindex + '/' + childindex + '/' + '1').success(function(data){
+      $cookieStore.put(obj_id, 1);
+      console.log($cookieStore.get(obj_id));
+       $scope.postList = data; 
+    });
+    }
+  };
+
+  $scope.subdownvotefunc = function(parentindex, childindex, obj_id){
+    if($cookieStore.get(obj_id) == -1){
+      $http.put('/api/' + $routeParams.id + '/' + parentindex + '/' + childindex + '/' + '1').success(function(data){
+      console.log("I am going back to original form");
+      $cookieStore.put(obj_id, 0);
+      console.log($cookieStore.get(obj_id));
+       $scope.postList = data;
+    });
+    }
+    else if($cookieStore.get(obj_id) == 1){
+      $http.put('/api/' + $routeParams.id + '/' + parentindex + '/' + childindex + '/' + '-2').success(function(data){
+        $cookieStore.put(obj_id, -1);
+        console.log($cookieStore.get(obj_id));
+         $scope.postList = data; 
+      });
+    }
+    else{
+    $http.put('/api/' + $routeParams.id + '/' + parentindex + '/' + childindex + '/' + '-1').success(function(data){
+      $cookieStore.put(obj_id,-1);
+      console.log($cookieStore.get(obj_id));
+       $scope.postList = data; 
+    });
+    }
+  }
   
   $scope.makePost = function(){
     if ($scope.commentText && $scope.commentText.trim()) {
@@ -108,6 +160,18 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     } else {
       // Show error message?
       console.log('Please enter comment')
+    }
+  };
+  $scope.makesubpost = function(index , subcommenttext){
+    console.log(index);
+    console.log(subcommenttext);
+    console.log(subcommenttext.trim());
+    if(subcommenttext && subcommenttext.trim()){
+      console.log(index);
+      $http.put('/api/UCSD/' + $routeParams.id + '/' + subcommenttext + '/' + index).success(function(data){
+      $scope.postList = data;
+      subcommenttext = null;        
+    });
     }
   };
 }
