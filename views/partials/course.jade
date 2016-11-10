@@ -37,14 +37,14 @@ div#post-list(style='margin-bottom: 80px')
 						div.pull-left {{ subcomment.subcomment }}
 								div.pull-right
 						div.pull-right
-							button.btn.btn-success(type="button") Upvote
-							h6 {{ post.subvotes[$parent.$index].subvote }}
-							button.btn.btn-danger(type="button") Downvote
+							button.btn.btn-success(type="button" ng-click="subupvotefunc($parent.$index,$index,subcomment._id)") Upvote
+							h6 {{ post.subvotes[$index].subvote }}
+							button.btn.btn-danger(type="button" ng-click="subdownvotefunc($parent.$index,$index,subcomment._id)") Downvote
 					hr
 
 		div.new-reply(ng-show='replyBoxes[$index] && post.post')
 			div.form-control.new-comment(style='margin-bottom:50px')
-				textarea.comment(placeholder='Type in a reply here...', ng-model='a') 
-				button.btn.btn-primary Reply or Post
+				textarea.comment(placeholder='Type in a reply here...', ng-model='subcommenttext') 
+				button.btn.btn-primary(type="button" ng-click='makesubpost($index,subcommenttext)') Reply or Post
 				button.btn.btn-success(ng-click='cancelReply($index)') Cancel
 		hr
