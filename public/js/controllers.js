@@ -27,7 +27,26 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     .success(function(data) {
       $scope.courseAbbreviation = data['course_abbreviation'];
       $scope.postList = data['posts'];
+      $scope.expandedSubComments = [];
+      $scope.replyBoxes = [];
+
+      for (var i = 0; i < data['posts'].length; i++) {
+        $scope.expandedSubComments.push(false);
+        $scope.replyBoxes.push(false);
+      }
     });
+
+  $scope.expandSubComments = function(index) {
+    $scope.expandedSubComments[index] = true;
+  };
+
+  $scope.replyToComment = function(index) {
+    $scope.replyBoxes[index] = true;
+  }
+
+  $scope.cancelReply = function(index) {
+    $scope.replyBoxes[index] = false;
+  }
 
   $scope.upvotefunc = function(index , obj_id){
     if($cookieStore.get(obj_id) == 1){
