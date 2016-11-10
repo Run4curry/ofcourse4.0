@@ -6,6 +6,7 @@
 var express = require('express');
 var routes  = require('./routes');
 var api  = require('./routes/api');
+var favicon = require('serve-favicon');
 var PORT = process.env.PORT || 3000;
 
 
@@ -22,6 +23,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/public'));
+  app.use(favicon(__dirname + '/public/favicon.ico'))
   app.use(app.router);
 });
 

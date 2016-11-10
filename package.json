@@ -6,6 +6,7 @@
     "express": "2.5.10",
     "jade": ">= 0.0.1",
     "jsonfile": "^2.4.0",
-    "mongoose": "^4.6.6"
+    "mongoose": "^4.6.6",
+    "serve-favicon": "^2.3.0"
   }
 }
