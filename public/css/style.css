@@ -155,7 +155,7 @@ div.new-comment {
     padding: 0px;
 }
 
-#comment {
+.comment {
     outline: none;
     resize: none;
     padding: 10px;

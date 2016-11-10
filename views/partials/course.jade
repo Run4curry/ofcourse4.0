@@ -12,10 +12,10 @@ div.input-group
 			i.glyphicon.glyphicon-search
 
 div.form-control.new-comment
-		textarea#comment(placeholder='Enter your thoughts about {{courseAbbreviation}}...' ng-model="commentText")
+		textarea.comment(placeholder='Enter your thoughts about {{courseAbbreviation}}...' ng-model="commentText")
 		button#comment-button.btn.btn-primary.pull-right(ng-click="makePost()") Post
 
-div#post-list
+div#post-list(style='margin-bottom: 80px')
 	div(ng-repeat='post in postList')
 		div.row(ng-show='post.post')
 			div.pull-left.post-list-item
@@ -24,4 +24,27 @@ div#post-list
 				button.btn.btn-success(type="button" ng-click="upvotefunc($index,post._id)") Upvote
 				h6 {{post.vote}}
 				button.btn.btn-danger(type="button" ng-click="downvotefunc($index,post._id)") Downvote
+				div
+				button.btn.btn-primary(type="button" ng-click='replyToComment($index)') Reply
+		hr
+
+		div.subcomment-list(ng-show='post.subcomments.length && post.post') 
+			h6(ng-click='expandSubComments($index)', ng-hide='expandedSubComments[$index]', style='margin-left: 50px;') More replies
+			hr(ng-hide='expandedSubComments[$index]')
+			ul(ng-show='expandedSubComments[$index]', style='list-style:none; margin-left: 30px')
+				li(ng-repeat='subcomment in post.subcomments') 
+					div.row
+						div.pull-left {{ subcomment.subcomment }}
+								div.pull-right
+						div.pull-right
+							button.btn.btn-success(type="button") Upvote
+							h6 {{ post.subvotes[$parent.$index].subvote }}
+							button.btn.btn-danger(type="button") Downvote
+					hr
+
+		div.new-reply(ng-show='replyBoxes[$index] && post.post')
+			div.form-control.new-comment(style='margin-bottom:50px')
+				textarea.comment(placeholder='Type in a reply here...', ng-model='a') 
+				button.btn.btn-primary Reply or Post
+				button.btn.btn-success(ng-click='cancelReply($index)') Cancel
 		hr
