@@ -5,16 +5,27 @@ ol.breadcrumb
 		a(href='/UCSD') UCSD
 	li.breadcrumb-item.active {{courseAbbreviation}}
 
-div.input-group
+
+// search bar 
+//form
+	div.form-group
+		div.input-group
+			div.input-group-addon
+				i.glyphicon.glyphicon-search
+			input.form-control(type='text', name='search', placeholder='Search classes...', ng-model='courseFilter')
+
+//div.input-group
 	input.form-control(type='text', name='search', placeholder='Search classes...')
 	div.input-group-btn
 		button.btn.btn-default(type='submit')
 			i.glyphicon.glyphicon-search
 
+// new comment box
 div.form-control.new-comment
 		textarea.comment(placeholder='Enter your thoughts about {{courseAbbreviation}}...' ng-model="commentText")
 		button#comment-button.btn.btn-primary.pull-right(ng-click="makePost()") Post
 
+// list of posts
 div#post-list(style='margin-bottom: 80px')
 	div(ng-repeat='post in postList')
 		div.row(ng-show='post.post')
