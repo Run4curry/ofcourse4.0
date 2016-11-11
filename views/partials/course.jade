@@ -20,6 +20,11 @@ ol.breadcrumb
 		button.btn.btn-default(type='submit')
 			i.glyphicon.glyphicon-search
 
+// test word cloud
+div
+	canvas#canvas
+button.btn.btn-warning(ng-click='wordCloud()') WordCloud
+
 // new comment box
 div.form-control.new-comment
 		textarea.comment(placeholder='Enter your thoughts about {{courseAbbreviation}}...' ng-model="commentText")

@@ -44,6 +44,7 @@ app.get('/partials/:name', routes.partials);
 // JSON API
 
 app.put('/api/UCSD/:course/:mainpost', api.postComment);
+app.get('/api/freq/UCSD/:course', api.getFrequencies);
 app.get('/api/UCSD', api.getCourses);
 app.get('/api/UCSD/:course', api.getOneCourse);
 app.get('/api/UCSD/:course/:postind', api.getSubComments);
