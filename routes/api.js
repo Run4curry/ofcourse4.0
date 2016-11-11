@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var courseSchema = require('./schema');
 var jsonfile = require('jsonfile');
 var catalog_path = 'course_catalog.json';
+var stopwords_path = 'stopwords.json';
 
 mongoose.connect(process.env.DB_URL);
 
@@ -115,5 +116,55 @@ exports.getOneCourse = function (req, res) {
     course_abbreviation : courseId
   }, function(err, data) {
     res.json(data);
+  });
+};
+
+exports.getFrequencies = function(req, res) {
+  var courseId = req.params.course;
+
+  courseSchema.findOne({
+    course_abbreviation: courseId
+  }, function(err, courseContents) {
+    if (err) res.send(err)
+
+    // get all text from comments and subcomments
+    var allText = '';
+    var postList = courseContents.posts;
+    for (var i = 1; i < postList.length; i++) {
+      allText += postList[i].post + ' ';
+      for (var j = 1; j < postList[i].subcomments.length; j++) {
+        allText += postList[i].subcomments[j].subcomment + ' ';
+      }
+    }
+
+    // check for stopwords
+    jsonfile.readFile(stopwords_path, function(err, stopwordsList) {
+      var stopwords = new Set(stopwordsList);
+      var tokens = allText.split(/[^A-Za-z]/);
+
+      // remove stopwords from text
+      for (var i = 0; i < tokens.length; ) {
+        if (stopwords.has(tokens[i])) tokens.splice(i, 1);
+        else i++;
+      }
+
+      // get frequencies for each token
+      var freqs = {};
+      for (var i = 0; i < tokens.length; i++) {
+        if (tokens[i] in freqs) {
+          freqs[tokens[i]]++;
+        } else {
+          freqs[tokens[i]] = 1;
+        }
+      }
+
+      var returnList = []
+      for (var k in freqs) {
+        tmpList = [k, freqs[k]];
+        returnList.push(tmpList);
+      }
+
+      res.json(returnList);
+    });
   });
 };

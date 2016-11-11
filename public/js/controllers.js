@@ -37,17 +37,31 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
       }
     });
 
+  $scope.wordCloud = function() {
+    // make new get request to get list of words and frequencies
+    $http.get('/api/freq/UCSD/' + $routeParams.id)
+      .success(function(data) {
+        var options = {
+          list: data,
+          fontWeight: 600,
+          weightFactor: 16 
+        };
+
+        WordCloud(document.getElementById('canvas'), options);
+      })
+  }
+
   $scope.expandSubComments = function(index) {
     $scope.expandedSubComments[index] = true;
   };
 
   $scope.replyToComment = function(index) {
     $scope.replyBoxes[index] = true;
-  }
+  };
 
   $scope.cancelReply = function(index) {
     $scope.replyBoxes[index] = false;
-  }
+  };
 
   $scope.upvotefunc = function(index , obj_id){
     if($cookieStore.get(obj_id) == 1){
