@@ -316,8 +316,10 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     console.log(subcommenttext);
     console.log(subcommenttext.trim());
     if(subcommenttext && subcommenttext.trim()){
+      var encodedtext = escape(subcommenttext);
+      console.log(encodedtext);
       console.log(index);
-      $http.put('/api/UCSD/' + $routeParams.id + '/' + subcommenttext + '/' + index).success(function(data){
+      $http.put('/api/' + $routeParams.id + '/' + encodedtext + '/' + index).success(function(data){
       $scope.postList = data;
       subcommenttext = null;        
     });
