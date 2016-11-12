@@ -48,7 +48,7 @@ app.get('/api/freq/UCSD/:course', api.getFrequencies);
 app.get('/api/UCSD', api.getCourses);
 app.get('/api/UCSD/:course', api.getOneCourse);
 app.get('/api/UCSD/:course/:postind', api.getSubComments);
-app.put('/api/UCSD/:course/:subcomment/:postind' , api.postSubComment);
+app.put('/api/:course/:subcomment/:postind' , api.postSubComment);
 app.put('/api/:course/:ind/:val' , api.upvotedownvote);
 app.put('/api/:course/:ind/:ind2/:val' , api.subupvotedownvote);
 

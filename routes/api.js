@@ -10,7 +10,7 @@ mongoose.connect(process.env.DB_URL);
 exports.postComment = function (req, res) {
   var courseId = req.params.course;
   var mainpost = req.params.mainpost;
-
+  console.log("I am in post comment function");
   // push the new post onto the list of posts
   courseSchema.update({course_abbreviation : courseId}, 
     {$push : {"posts" : {"post" : mainpost, "vote" : 0}}},
@@ -51,7 +51,7 @@ exports.postSubComment = function(req,res) {
   var subcomment = req.params.subcomment;
   var tobeconvertedindex = req.params.postind;
   var indexval = parseInt(tobeconvertedindex);
-  
+  console.log("I am in subcomment function");
   courseSchema.findOne({course_abbreviation : courseId},
     function(err,data){
       data.posts[indexval].subcomments.push({subcomment : subcomment});
