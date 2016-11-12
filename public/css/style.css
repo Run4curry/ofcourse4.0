@@ -186,6 +186,12 @@ div.new-comment {
 #post-list {
   padding-bottom: 44px;
 }
+.glyphicon-chevron-up {
+  font-size: 30px;
+}
+.glyphicon-chevron-down {
+  font-size: 30px;
+}
 
 /**********************/
 /* END OF COURSE PAGE */
