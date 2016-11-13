@@ -84,7 +84,7 @@ exports.subupvotedownvote = function(req,res){
 
 // PUT - Update vote count
 exports.upvotedownvote = function(req,res) {
-  var courseId = req.params.course;
+  var courseId = req.params.course;  
   var index = req.params.ind;
   var tobeconvertedindex = index; 
   var tobeconvertedvalue = req.params.val;
