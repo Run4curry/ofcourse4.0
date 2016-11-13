@@ -47,7 +47,7 @@ div#post-list(style='margin-bottom: 80px')
 		hr
 
 		div.subcomment-list(ng-show='post.subcomments.length && post.post') 
-			h6(ng-click='expandSubComments($index)', ng-hide='expandedSubComments[$index]', style='margin-left: 50px;') More replies
+			h6(ng-click='expandSubComments($index)', ng-hide='expandedSubComments[$index]', style='margin-left: 50px;') {{post.subcomments.length}} replies
 			hr(ng-hide='expandedSubComments[$index]')
 			ul(ng-show='expandedSubComments[$index]', style='list-style:none; margin-left: 30px')
 				li(ng-repeat='subcomment in post.subcomments') 

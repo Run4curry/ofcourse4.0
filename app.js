@@ -49,7 +49,7 @@ app.get('/api/UCSD', api.getCourses);
 app.get('/api/UCSD/:course', api.getOneCourse);
 app.get('/api/UCSD/:course/:postind', api.getSubComments);
 app.put('/api/:course/:subcomment/:postind' , api.postSubComment);
-app.put('/api/:course/:ind/:val' , api.upvotedownvote);
+app.put('/api/UCSD/:course/:ind/:val' , api.upvotedownvote);
 app.put('/api/:course/:ind/:ind2/:val' , api.subupvotedownvote);
 
 // redirect all others to the index (HTML5 history)
