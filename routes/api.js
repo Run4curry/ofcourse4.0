@@ -87,7 +87,7 @@ exports.vote = function(req,res) {
     function(err, data){
       if (err) console.log(err);
 
-      data.posts[index].vote = data.posts[index].vote + val;
+      data.posts[index].vote += val;
       data.save();
       res.json(data.posts);         
     });
