@@ -119,8 +119,8 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
           }
         }
       }
-      console.log($scope.subupvotestyles[0][0]);
-      console.log($scope.subdownvotestyles[0][1]);
+      // console.log($scope.subupvotestyles[0][0]);
+      // console.log($scope.subdownvotestyles[0][1]);
     });
 
   $scope.wordCloud = function() {
