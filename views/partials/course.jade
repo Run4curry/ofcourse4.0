@@ -37,11 +37,11 @@ div#post-list(style='margin-bottom: 80px')
 			div.pull-left.post-list-item
 				p.post-text {{post.post}}
 			div.pull-right
-				span.glyphicon.glyphicon-chevron-up(ng-click="upvotefunc($index,post._id)"
-				ng-style="upvotestyles[$index]")
+				span.glyphicon.glyphicon-chevron-up(ng-click="upvote($index,post._id)"
+				ng-style="upvoteStyles[$index]")
 				h6 {{post.vote}}
-				span.glyphicon.glyphicon-chevron-down(ng-click="downvotefunc($index,post._id)"
-				ng-style="downvotestyles[$index]")
+				span.glyphicon.glyphicon-chevron-down(ng-click="downvote($index,post._id)"
+				ng-style="downvoteStyles[$index]")
 				div
 				button.btn.btn-primary(type="button" ng-click='replyToComment($index)') Reply
 		hr
@@ -55,14 +55,14 @@ div#post-list(style='margin-bottom: 80px')
 						div.pull-left {{ subcomment.subcomment }}
 								div.pull-right
 						div.pull-right
-							span.glyphicon.glyphicon-chevron-up(ng-click="subupvotefunc($parent.$index,$index,subcomment._id)" ng-style="subupvotestyles[$parent.$index - 1][$index]")
+							span.glyphicon.glyphicon-chevron-up(ng-click="subUpvote($parent.$index,$index,subcomment._id)" ng-style="subUpvoteStyles[$parent.$index - 1][$index]")
 							h6 {{ post.subvotes[$index].subvote }}
-							span.glyphicon.glyphicon-chevron-down(ng-click="subdownvotefunc($parent.$index,$index,subcomment._id)" ng-style="subdownvotestyles[$parent.$index - 1][$index]") 
+							span.glyphicon.glyphicon-chevron-down(ng-click="subDownvote($parent.$index,$index,subcomment._id)" ng-style="subDownvoteStyles[$parent.$index - 1][$index]") 
 					hr
 
 		div.new-reply(ng-show='replyBoxes[$index] && post.post')
 			div.form-control.new-comment(style='margin-bottom:50px')
-				textarea.comment(placeholder='Type in a reply here...', ng-model='subcommenttext') 
-				button.btn.btn-primary(type="button" ng-click='makesubpost($index,subcommenttext)') Reply or Post
+				textarea.comment(placeholder='Type in a reply here...', ng-model='reply.text') 
+				button.btn.btn-primary(type="button" ng-click='makeSubPost($index)') Reply or Post
 				button.btn.btn-success(ng-click='cancelReply($index)') Cancel
 		hr
