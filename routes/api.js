@@ -151,16 +151,25 @@ exports.getFrequencies = function(req, res) {
       // get frequencies for each token
       var freqs = {};
       for (var i = 0; i < tokens.length; i++) {
-        if (tokens[i] in freqs) {
-          freqs[tokens[i]]++;
+        var tmpToken = tokens[i].toLowerCase();
+        if (tmpToken in freqs) {
+          freqs[tmpToken]++;
         } else {
-          freqs[tokens[i]] = 1;
+          freqs[tmpToken] = 1;
         }
       }
+      // sort by frequency
+      var keys = Object.keys(freqs);
+      keys.sort(function(a, b) {
+        return freqs[b] - freqs[a];
+      });
 
-      var returnList = []
-      for (var k in freqs) {
-        tmpList = [k, freqs[k]];
+      // reformat hashmap to list form for wordcloud2.js
+      // EX: { 'a': 1, 'b': 2 } --> [['a', 1], ['b', 2]]
+      var returnList = [];
+      for (var i = 0; i < keys.length; i++) {
+        var token = keys[i];
+        tmpList = [token, freqs[token]];
         returnList.push(tmpList);
       }
 
