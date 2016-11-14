@@ -25,44 +25,66 @@ div
 	canvas#canvas
 button.btn.btn-warning(ng-click='wordCloud()') WordCloud
 
-// new comment box
-div.form-control.new-comment
-		textarea.comment(placeholder='Enter your thoughts about {{courseAbbreviation}}...' ng-model="commentText")
-		button#comment-button.btn.btn-primary.pull-right(ng-click="makePost()") Post
+
 
 // list of posts
 div#post-list(style='margin-bottom: 80px')
+	div.row
+		div.col-sm-3
+		div.col-sm-6
+			div.form-control.new-comment
+				textarea.comment(placeholder='Enter your thoughts about {{courseAbbreviation}}...' ng-model="commentText")
+				button#comment-button.btn.btn-primary.pull-right(ng-click="makePost()") Post
+		div.col-sm-3
 	div(ng-repeat='post in postList')
-		div.row(ng-show='post.post')
-			div.pull-left.post-list-item
-				p.post-text {{post.post}}
-			div.pull-right
-				span.glyphicon.glyphicon-chevron-up(ng-click="upvote($index,post._id)"
-				ng-style="upvoteStyles[$index]")
-				h6 {{post.vote}}
-				span.glyphicon.glyphicon-chevron-down(ng-click="downvote($index,post._id)"
-				ng-style="downvoteStyles[$index]")
-				div
-				button.btn.btn-primary(type="button" ng-click='replyToComment($index)') Reply
-		hr
-
-		div.subcomment-list(ng-show='post.subcomments.length && post.post') 
-			h6(ng-click='expandSubComments($index)', ng-hide='expandedSubComments[$index]', style='margin-left: 50px;') {{post.subcomments.length}} replies
-			hr(ng-hide='expandedSubComments[$index]')
-			ul(ng-show='expandedSubComments[$index]', style='list-style:none; margin-left: 30px')
-				li(ng-repeat='subcomment in post.subcomments') 
-					div.row
-						div.pull-left {{ subcomment.subcomment }}
-								div.pull-right
-						div.pull-right
-							span.glyphicon.glyphicon-chevron-up(ng-click="subUpvote($parent.$index,$index,subcomment._id)" ng-style="subUpvoteStyles[$parent.$index - 1][$index]")
-							h6 {{ post.subvotes[$index].subvote }}
-							span.glyphicon.glyphicon-chevron-down(ng-click="subDownvote($parent.$index,$index,subcomment._id)" ng-style="subDownvoteStyles[$parent.$index - 1][$index]") 
+		div.row
+			div.col-sm-3
+			div.col-sm-6
+				div.post-object
+					div.row(ng-show='post.post')
+						div.pull-left.post-list-item
+							p.post-text {{post.post}}
 					hr
 
-		div.new-reply(ng-show='replyBoxes[$index] && post.post')
-			div.form-control.new-comment(style='margin-bottom:50px')
-				textarea.comment(placeholder='Type in a reply here...', ng-model='reply.text') 
-				button.btn.btn-primary(type="button" ng-click='makeSubPost($index)') Reply or Post
-				button.btn.btn-success(ng-click='cancelReply($index)') Cancel
-		hr
+
+					div.subcomment-list(ng-show='post.subcomments.length && post.post') 
+						h6(ng-click='expandSubComments($index)', ng-hide='expandedSubComments[$index]', style='margin-left: 50px;') {{post.subcomments.length}} replies
+						hr(ng-hide='expandedSubComments[$index]')
+						ul(ng-show='expandedSubComments[$index]', style='list-style:none; margin-left: 30px')
+							li(ng-repeat='subcomment in post.subcomments') 
+								div.row
+									div.pull-left {{ subcomment.subcomment }}
+											div.pull-right
+								br
+								br
+								div.row
+									div.col-sm-2
+										span.glyphicon.glyphicon-chevron-up(ng-click="subUpvote(postList.length -$parent.$index - 1,$index,subcomment._id,$parent.$index)" ng-style="subUpvoteStyles[$parent.$index][$index]")
+									div.col-sm-2
+										span.badge{{ post.subvotes[$index].subvote }}
+									div.col-sm-2
+										span.glyphicon.glyphicon-chevron-down(ng-click="subDownvote(postList.length -$parent.$index - 1,$index,subcomment._id,$parent.$index)" ng-style="subDownvoteStyles[$parent.$index][$index]") 
+								hr
+
+					div.row 
+						div.col-sm-2
+							span.glyphicon.glyphicon-chevron-up(ng-click="upvote(postList.length - $index - 1,$index,post._id)"
+							ng-style="upvoteStyles[$index]")
+						div.col-sm-2
+							span.badge{{post.vote}}
+						div.col-sm-2
+							span.glyphicon.glyphicon-chevron-down(ng-click="downvote(postList.length - $index - 1,$index,post._id)"
+							ng-style="downvoteStyles[$index]")
+						div.col-sm-2
+							span.glyphicon.glyphicon-comment(ng-click='replyToComment($index)')
+						div.col-sm-2
+							{{post.subcomments.length}} replies
+
+
+					div.new-reply(ng-show='replyBoxes[$index] && post.post')
+						div.form-control.new-comment(style='margin-bottom:50px')
+							textarea.comment(placeholder='Type in a reply here...', ng-model='reply.text') 
+							button.btn.btn-primary(type="button" ng-click='makeSubPost(postList.length - $index -1)') Reply or Post
+							button.btn.btn-success(ng-click='cancelReply($index)') Cancel
+
+			div.col-sm-3
