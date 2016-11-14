@@ -1,5 +1,5 @@
 /****************/
-/* LAYOUT STUFF */
+/* layout stuff */
 /****************/
 
 .menu {
@@ -72,7 +72,7 @@ hr{
 .navbar-brand {
     color:white; 
     border-bottom: 2px solid white;
-    font-family:'Leckerli One', cursive;
+    font-family:'leckerli one', cursive;
 }
 
 .footer-text {
@@ -93,23 +93,26 @@ hr{
     background-color: #6eb5c0;
 }
 /*****************/
-/* END OF LAYOUT */
+/* end of layout */
 /*****************/
 
 /*********************/
-/* LANDING/HOME PAGE */
+/* landing/home page */
 /*********************/
 .leckerli-font {
-    font-family: 'Leckerli One', cursive;
+    font-family: 'leckerli one', cursive;
     color: white;
 }
+
 #homebutton {
   position: relative;
-  left: 65px;
+  left: 37.5%;
   border : 2px solid white;
-  padding: 20px;
-  margin: 10px;
-  width: 200px;
+  padding: 12px;
+  /*margin: 10px;*/
+  margin-bottom: 10px;
+  margin-top: 10px;
+  width: 25%;
 
   text-align: center;
 }
@@ -132,11 +135,17 @@ hr{
 
 #landing-title {
     position: relative;
-    left : 65px;
+    left: 20%;
     font-size: 40px;
-    border-bottom: 2px solid white;
-    padding: 10px;
+    padding: 5px;
     width: 60%;
+}
+
+#border-line {
+  position: relative;
+  left: 32.5%;
+  border-top: 2px solid white;
+  width: 35%;
 }
 
 #landing-motto {
@@ -151,15 +160,15 @@ div.dropdown a button.leckerli-font {
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
 } 
 
 /****************************/
-/* END OF LANDING/HOME PAGE */
+/* end of landing/home page */
 /****************************/
 
 /*************/
-/* UCSD PAGE */
+/* ucsd page */
 /*************/
 
 div.list-group {
@@ -168,11 +177,11 @@ div.list-group {
 }
 
 /********************/
-/* END OF UCSD PAGE */
+/* end of ucsd page */
 /********************/
 
 /***************/
-/* COURSE PAGE */
+/* course page */
 /***************/
 div.new-comment {
     height: 6em;
@@ -181,7 +190,7 @@ div.new-comment {
     padding: 0px;
 }
 div.post-object {
-  border-color : #A6A6A6;
+  border-color : #a6a6a6;
   background-color: white;
   padding: 30px;
   margin : 10px;
@@ -209,7 +218,7 @@ div.post-object {
 
 .post-text {
     width: 60%;
-    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+    font-family: "trebuchet ms", "lucida grande", "lucida sans unicode", "lucida sans", tahoma, sans-serif;
 }
 
 .voting-buttons {
@@ -230,5 +239,5 @@ div.post-object {
   font-size: 20px;
 }
 /**********************/
-/* END OF COURSE PAGE */
+/* end of course page */
 /**********************/
