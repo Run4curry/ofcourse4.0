@@ -33,7 +33,7 @@
 
 html{
     height: 0%;
-    background-color: #e6e6e6;
+    background-color: #6eb5c0;
 }
 
 body {
@@ -55,7 +55,7 @@ footer{
     left: 0;
     width:100%;
     padding: 3px;
-    background-color: #4A59D8;
+    background-color: #6eb5c0;
     text-align: center;
 }
 
@@ -64,12 +64,14 @@ hr{
 }
 
 .navbar {
-    background-color:#4A59D8; 
+    background-color:#6eb5c0; 
     margin-bottom: 35px;
+    border-bottom: 2px solid white;
 }
 
 .navbar-brand {
     color:white; 
+    border-bottom: 2px solid white;
     font-family:'Leckerli One', cursive;
 }
 
@@ -78,7 +80,7 @@ hr{
 }
 
 .breadcrumb {
-    margin-top: 50px;
+    margin-top: 60px;
     margin-bottom: 0px;
     padding-bottom: 0px;
 }
@@ -88,7 +90,7 @@ hr{
     margin-right: auto;
     padding-left: 15px;
     padding-right: 15px;
-    background-color: #e6e6e6;
+    background-color: #6eb5c0;
 }
 /*****************/
 /* END OF LAYOUT */
@@ -99,11 +101,24 @@ hr{
 /*********************/
 .leckerli-font {
     font-family: 'Leckerli One', cursive;
-    color: black;
+    color: white;
+}
+#homebutton {
+  position: relative;
+  left: 65px;
+  border : 2px solid white;
+  padding: 20px;
+  margin: 10px;
+  width: 200px;
+
+  text-align: center;
 }
 
 .black-font {
     color: black;
+}
+.btn {
+  background-color: transparent;
 }
 
 #landing-center-col {
@@ -116,7 +131,12 @@ hr{
 }
 
 #landing-title {
+    position: relative;
+    left : 65px;
     font-size: 40px;
+    border-bottom: 2px solid white;
+    padding: 10px;
+    width: 60%;
 }
 
 #landing-motto {
