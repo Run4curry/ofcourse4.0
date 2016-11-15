@@ -22,6 +22,7 @@ function UcsdCtrl($scope, $http, $location) {
   };
 
 function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore) {
+  $scope.showCanvas = false;
 
   // get the list of posts for this course
   $http.get('/api/UCSD/' + $routeParams.id)
@@ -137,6 +138,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
         };
 
         WordCloud(document.getElementById('canvas'), options);
+        $scope.showCanvas = true;
       })
   }
 
