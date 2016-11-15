@@ -167,7 +167,14 @@ exports.getFrequencies = function(req, res) {
         returnList.push(tmpList);
       }
 
-      res.json(returnList);
+      if (returnList.length != 0) {
+        res.json({ 
+          error: false, 
+          frequencies: returnList
+        });
+      } else {
+        res.json({ error: true });
+      }
     });
   });
 };

@@ -29,7 +29,9 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     .success(function(data) {
       $scope.courseAbbreviation = data['course_abbreviation'];
       $scope.postList = data['posts'];
-      $scope.postList.reverse();
+      if ($scope.postList) {
+        $scope.postList.reverse();
+      }
 
       // for subcomments/replying
       $scope.expandedSubComments = [];
@@ -132,13 +134,15 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     $http.get('/api/freq/UCSD/' + $routeParams.id)
       .success(function(data) {
         var options = {
-          list: data,
+          list: data.frequencies,
           fontWeight: 600,
           weightFactor: 16 
         };
 
-        WordCloud(document.getElementById('canvas'), options);
-        $scope.showCanvas = true;
+        if (!data.error) {
+          WordCloud(document.getElementById('canvas'), options);
+          $scope.showCanvas = true;
+        }
       })
   }
 
@@ -156,10 +160,10 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
 
   $scope.upvote = function(index , displayindex, obj_id){
     if($cookieStore.get(obj_id) == 1){
-    console.log('index ' + index)
+    //console.log('index ' + index)
       $http.put('/api/' + $routeParams.id + '/' + index + '/' + '-1').success(function(data){
         $cookieStore.put(obj_id, 0);
-        console.log($cookieStore.get(obj_id));
+        //console.log($cookieStore.get(obj_id));
         $scope.upvoteStyles[displayindex] = {
           color : ''
         }
@@ -168,10 +172,10 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
       });
     }
     else if($cookieStore.get(obj_id) == -1){
-    console.log('index ' + index)
+    //console.log('index ' + index)
       $http.put('/api/' + $routeParams.id + '/' + index +'/' + '2').success(function(data){
         $cookieStore.put(obj_id, 1);
-        console.log($cookieStore.get(obj_id));
+        // console.log($cookieStore.get(obj_id));
         $scope.postList = data; 
         $scope.postList.reverse();
         $scope.upvoteStyles[displayindex] = {
@@ -183,10 +187,10 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
       });
     }
     else{
-    console.log('index ' + index)
+    // console.log('index ' + index)
     $http.put('/api/' + $routeParams.id + '/'+ index + '/' + '1').success(function(data){
       $cookieStore.put(obj_id, 1);
-      console.log($cookieStore.get(obj_id));
+      // console.log($cookieStore.get(obj_id));
        $scope.postList = data;
         $scope.postList.reverse();
        $scope.upvoteStyles[displayindex] = {
@@ -199,9 +203,9 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
    $scope.downvote = function(index ,displayindex, obj_id){
     if($cookieStore.get(obj_id) == -1){
       $http.put('/api/' + $routeParams.id + '/' + index + '/' + '1').success(function(data){
-      console.log("I am going back to original form");
+      // console.log("I am going back to original form");
       $cookieStore.put(obj_id, 0);
-      console.log($cookieStore.get(obj_id));
+      // console.log($cookieStore.get(obj_id));
        $scope.postList = data;
         $scope.postList.reverse();
        $scope.downvoteStyles[displayindex] = {
@@ -212,7 +216,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     else if($cookieStore.get(obj_id) == 1){
       $http.put('/api/' + $routeParams.id + '/' + index + '/' + '-2').success(function(data){
         $cookieStore.put(obj_id, -1);
-        console.log($cookieStore.get(obj_id));
+        // console.log($cookieStore.get(obj_id));
          $scope.postList = data;
          $scope.postList.reverse();
          $scope.upvoteStyles[displayindex] = {
@@ -226,7 +230,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     else{
     $http.put('/api/' + $routeParams.id + '/' + index + '/' + '-1').success(function(data){
       $cookieStore.put(obj_id,-1);
-      console.log($cookieStore.get(obj_id));
+      // console.log($cookieStore.get(obj_id));
        $scope.postList = data;
         $scope.postList.reverse();
        $scope.downvoteStyles[displayindex] = {
@@ -255,7 +259,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     else if($cookieStore.get(obj_id) == -1){
       $http.put('/api/' + $routeParams.id + '/' + parentindex + '/' + childindex + '/' + '2').success(function(data){
         $cookieStore.put(obj_id, 1);
-        console.log($cookieStore.get(obj_id));
+        // console.log($cookieStore.get(obj_id));
         $scope.postList = data; 
         $scope.postList.reverse();
         $scope.subUpvoteStyles[displayindex][childindex] = {
@@ -269,7 +273,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     else{
     $http.put('/api/' + $routeParams.id + '/'+ parentindex + '/' + childindex + '/' + '1').success(function(data){
       $cookieStore.put(obj_id, 1);
-      console.log($cookieStore.get(obj_id));
+      // console.log($cookieStore.get(obj_id));
        $scope.postList = data;
         $scope.postList.reverse();
        $scope.subUpvoteStyles[displayindex][childindex] = {
@@ -282,9 +286,9 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
   $scope.subDownvote = function(parentindex, childindex, obj_id, displayindex){
     if($cookieStore.get(obj_id) == -1){
       $http.put('/api/' + $routeParams.id + '/' + parentindex + '/' + childindex + '/' + '1').success(function(data){
-      console.log("I am going back to original form");
+      // console.log("I am going back to original form");
       $cookieStore.put(obj_id, 0);
-      console.log($cookieStore.get(obj_id));
+      // console.log($cookieStore.get(obj_id));
       $scope.postList = data;
        $scope.postList.reverse();
       $scope.subDownvoteStyles[displayindex][childindex] = {
@@ -295,7 +299,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     else if($cookieStore.get(obj_id) == 1){
       $http.put('/api/' + $routeParams.id + '/' + parentindex + '/' + childindex + '/' + '-2').success(function(data){
         $cookieStore.put(obj_id, -1);
-        console.log($cookieStore.get(obj_id));
+        // console.log($cookieStore.get(obj_id));
          $scope.postList = data;
          $scope.postList.reverse();
          $scope.subDownvoteStyles[displayindex][childindex] = {
@@ -309,7 +313,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     else{
     $http.put('/api/' + $routeParams.id + '/' + parentindex + '/' + childindex + '/' + '-1').success(function(data){
       $cookieStore.put(obj_id,-1);
-      console.log($cookieStore.get(obj_id));
+      // console.log($cookieStore.get(obj_id));
        $scope.postList = data;
        $scope.postList.reverse();
        $scope.subDownvoteStyles[displayindex][childindex] = {
@@ -330,7 +334,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
         });
     } else {
       // Show error message?
-      console.log('Please enter comment')
+      // console.log('Please enter comment')
     }
   };
 
@@ -338,8 +342,8 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
     var text = $scope.reply.text;
     if (text && text.trim()){
       var encodedText = escape(text);
-      console.log(encodedText);
-      console.log(index);
+      // console.log(encodedText);
+      // console.log(index);
       $http.put('/api/UCSD/' + $routeParams.id + '/' + encodedText + '/' + index)
         .success(function(data){
           $scope.postList = data;
