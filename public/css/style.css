@@ -176,6 +176,15 @@ div.list-group {
   border-color: black;
 }
 
+.input-group-addon {
+  border-bottom-left-radius: 0;
+}
+
+#search-bar {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
 /********************/
 /* end of ucsd page */
 /********************/
