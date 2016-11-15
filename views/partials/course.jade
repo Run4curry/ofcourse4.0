@@ -36,11 +36,11 @@ div#post-list
 				button#comment-button.btn.btn-primary.pull-right(ng-click="makePost()") Post
 		div.col-sm-3
 	div(ng-repeat='post in postList')
-		div.row
+		div.row(ng-show='post.post != null')
 			div.col-sm-3
 			div.col-sm-6
 				div.post-object
-					div.row(ng-show='post.post')
+					div.row
 						div.pull-left.post-list-item
 							p.post-text {{post.post}}
 					hr

@@ -138,14 +138,14 @@ exports.getFrequencies = function(req, res) {
 
       // remove stopwords from text
       for (var i = 0; i < tokens.length; ) {
-        if (stopwords.has(tokens[i])) tokens.splice(i, 1);
+        if (stopwords.has(tokens[i].toLowerCase())) tokens.splice(i, 1);
         else i++;
       }
 
       // get frequencies for each token
       var freqs = {};
       for (var i = 0; i < tokens.length; i++) {
-        var tmpToken = tokens[i].toLowerCase();
+        var tmpToken = tokens[i];
         if (tmpToken in freqs) {
           freqs[tmpToken]++;
         } else {
