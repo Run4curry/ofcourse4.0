@@ -183,6 +183,33 @@ div.list-group {
 /***************/
 /* course page */
 /***************/
+
+#canvas {
+  margin-left: auto;
+  margin-right: auto; 
+  padding-left: 0px;
+  padding-right: 0px;
+  display: block;
+  width: 330px;
+}
+
+#empty-canvas {
+  border: solid 3px white; 
+  text-align:center;
+  line-height:165px;
+  width:330px;
+  height:165px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+}
+
+#wordcloud-btn {
+  margin-left: auto;
+  margin-right: auto; 
+  display: block;
+}
+
 div.new-comment {
     height: 6em;
     margin-top: 12px;
@@ -225,9 +252,9 @@ div.post-object {
     text-align: center;
 }
 
-
 #post-list {
   padding-bottom: 44px;
+  margin-bottom: 80px;
 }
 .glyphicon-chevron-up {
   font-size: 20px;

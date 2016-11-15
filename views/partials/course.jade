@@ -22,13 +22,12 @@ ol.breadcrumb
 
 // test word cloud
 div
-	canvas#canvas
-button.btn.btn-warning(ng-click='wordCloud()') WordCloud
-
-
+	div.leckerli-font#empty-canvas(ng-click='wordCloud()', ng-hide='showCanvas') Click to create a word cloud!
+	canvas#canvas(ng-show='showCanvas', ng-click='wordCloud()')
+	//button.btn.btn-warning#wordcloud-btn(ng-hide='showCanvas', ng-click='wordCloud()') WordCloud
 
 // list of posts
-div#post-list(style='margin-bottom: 80px')
+div#post-list
 	div.row
 		div.col-sm-3
 		div.col-sm-6
@@ -61,7 +60,7 @@ div#post-list(style='margin-bottom: 80px')
 									div.col-sm-2
 										span.glyphicon.glyphicon-chevron-up(ng-click="subUpvote(postList.length -$parent.$index - 1,$index,subcomment._id,$parent.$index)" ng-style="subUpvoteStyles[$parent.$index][$index]")
 									div.col-sm-2
-										span.badge{{ post.subvotes[$index].subvote }}
+										span.badge {{ post.subvotes[$index].subvote }}
 									div.col-sm-2
 										span.glyphicon.glyphicon-chevron-down(ng-click="subDownvote(postList.length -$parent.$index - 1,$index,subcomment._id,$parent.$index)" ng-style="subDownvoteStyles[$parent.$index][$index]") 
 								hr
@@ -71,15 +70,13 @@ div#post-list(style='margin-bottom: 80px')
 							span.glyphicon.glyphicon-chevron-up(ng-click="upvote(postList.length - $index - 1,$index,post._id)"
 							ng-style="upvoteStyles[$index]")
 						div.col-sm-2
-							span.badge{{post.vote}}
+							span.badge {{post.vote}}
 						div.col-sm-2
 							span.glyphicon.glyphicon-chevron-down(ng-click="downvote(postList.length - $index - 1,$index,post._id)"
 							ng-style="downvoteStyles[$index]")
 						div.col-sm-2
 							span.glyphicon.glyphicon-comment(ng-click='replyToComment($index)')
-						div.col-sm-2
-							{{post.subcomments.length}} replies
-
+						div.col-sm-2 {{post.subcomments.length}} replies
 
 					div.new-reply(ng-show='replyBoxes[$index] && post.post')
 						div.form-control.new-comment(style='margin-bottom:50px')
@@ -88,3 +85,5 @@ div#post-list(style='margin-bottom: 80px')
 							button.btn.btn-success(ng-click='cancelReply($index)') Cancel
 
 			div.col-sm-3
+
+
