@@ -48,8 +48,6 @@ div#post-list
 
 
 					div.subcomment-list(ng-show='post.subcomments.length && post.post') 
-						h6(ng-click='expandSubComments($index)', ng-hide='expandedSubComments[$index]', style='margin-left: 50px;') {{post.subcomments.length}} replies
-						hr(ng-hide='expandedSubComments[$index]')
 						ul(ng-show='expandedSubComments[$index]', style='list-style:none; margin-left: 30px')
 							li(ng-repeat='subcomment in post.subcomments') 
 								div.row
@@ -67,17 +65,21 @@ div#post-list
 								hr
 
 					div.row 
-						div.col-sm-2
-							span.glyphicon.glyphicon-chevron-up(ng-click="upvote(postList.length - $index - 1,$index,post._id)"
-							ng-style="upvoteStyles[$index]")
-						div.col-sm-2
-							span.badge {{post.vote}}
-						div.col-sm-2
-							span.glyphicon.glyphicon-chevron-down(ng-click="downvote(postList.length - $index - 1,$index,post._id)"
-							ng-style="downvoteStyles[$index]")
-						div.col-sm-2
-							span.glyphicon.glyphicon-comment(ng-click='replyToComment($index)')
-						div.col-sm-2 {{post.subcomments.length}} replies
+						div.col-xs-12
+							div.col-xs-1
+								span.glyphicon.glyphicon-chevron-up(ng-click="upvote(postList.length - $index - 1,$index,post._id)"
+								ng-style="upvoteStyles[$index]")
+							div.col-xs-1
+								span.badge {{post.vote}}
+							div.col-xs-1
+								span.glyphicon.glyphicon-chevron-down(ng-click="downvote(postList.length - $index - 1,$index,post._id)"
+								ng-style="downvoteStyles[$index]")
+							div.col-xs-1
+							div.col-xs-1
+								span.glyphicon.glyphicon-comment(ng-click='replyToComment($index)')
+							div.col-xs-4
+								{{post.subcomments.length}} replies
+
 
 					div.new-reply(ng-show='replyBoxes[$index] && post.post')
 						div.form-control.new-comment(style='margin-bottom:50px')
