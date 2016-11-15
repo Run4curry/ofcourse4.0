@@ -109,7 +109,6 @@ exports.getOneCourse = function (req, res) {
   courseSchema.findOne({
     course_abbreviation : courseId
   }, function(err, data) {
-    console.log(data);
     res.json(data);
   });
 };
@@ -129,10 +128,10 @@ exports.getFrequencies = function(req, res) {
     var allText = '';
     var postList = courseContents.posts;
     for (var i = 0; i < postList.length; i++) {
-      if (!postList[i]) continue;
+      if (!postList[i] || postList[i].post === null) continue;
       allText += postList[i].post + ' ';
-      for (var j = 1; j < postList[i].subcomments.length; j++) {
-        if (!postList[i].subcomments[j]) continue;
+      for (var j = 0; j < postList[i].subcomments.length; j++) {
+        if (!postList[i].subcomments[j] || postList[i].post === null) continue;
         allText += postList[i].subcomments[j].subcomment + ' ';
       }
     }
