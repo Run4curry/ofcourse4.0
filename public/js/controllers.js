@@ -153,10 +153,12 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
 
   $scope.replyToComment = function(index) {
     $scope.replyBoxes[index] = true;
+    $scope.expandedSubComments[index] = true;
   };
 
   $scope.cancelReply = function(index) {
     $scope.replyBoxes[index] = false;
+    $scope.expandedSubComments[index] = false;
   };
 
   $scope.upvote = function(index , displayindex, obj_id){
