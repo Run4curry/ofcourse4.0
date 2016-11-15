@@ -119,7 +119,11 @@ exports.getFrequencies = function(req, res) {
   courseSchema.findOne({
     course_abbreviation: courseId
   }, function(err, courseContents) {
-    if (err) res.send(err)
+    if (err) es.send(err)
+    if (!courseContents || !courseContents.posts) {
+      res.json({ error: true });
+      return;
+    }
 
     // get all text from comments and subcomments
     var allText = '';

@@ -45,7 +45,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
       $scope.subUpvoteStyles = [];
       $scope.subDownvoteStyles = [];
 
-      for (var i = 0; i < data['posts'].length; i++) {
+      for (var i = 0; data['posts'] && i < data['posts'].length; i++) {
         $scope.expandedSubComments.push(false);
         $scope.replyBoxes.push(false);
       }
@@ -54,7 +54,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
       //to the user if the user has upvoted or downvoted a post 
       //this is to be represented by highlighting the upvote icon or 
       //highlighting the downvote icon 
-      for (var i = 0; i < data['posts'].length; i++){
+      for (var i = 0; data['posts'] && i < data['posts'].length; i++){
         $cookieStore.get(data['posts'][i]._id) ? 
         $scope.glyphColors.push($cookieStore.get(data['posts'][i]._id)) 
         : $scope.glyphColors.push(0);
@@ -92,15 +92,15 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
       }
 
       //initial pushing to create the two dimensional array 
-      for(var i = 0; i < $scope.postList.length; i++){
+      for(var i = 0; $scope.postList && i < $scope.postList.length; i++){
         $scope.subUpvoteStyles.push([]);
         $scope.subDownvoteStyles.push([]);
       }
       //for preserving whether the user upvoted or downvoted a subcomment 
       //use of two two dimensional array scope objects: one for the subcomment 
       //upvotes and one for the subcomment downvotes 
-      for( var i = 0; i < $scope.postList.length; i++){
-        for(var j = 0; j < $scope.postList[i].subcomments.length; j++){
+      for( var i = 0; $scope.postList && i < $scope.postList.length; i++){
+        for(var j = 0; $scope.postList && j < $scope.postList[i].subcomments.length; j++){
           if($cookieStore.get($scope.postList[i].subcomments[j]._id) == 1){
             $scope.subUpvoteStyles[i].push({
               color : 'green'
@@ -138,6 +138,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
           fontWeight: 600,
           weightFactor: 16 
         };
+        console.log(data);
 
         if (!data.error) {
           WordCloud(document.getElementById('canvas'), options);
