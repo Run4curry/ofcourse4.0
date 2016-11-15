@@ -119,8 +119,7 @@ exports.getFrequencies = function(req, res) {
   courseSchema.findOne({
     course_abbreviation: courseId
   }, function(err, courseContents) {
-    if (err) es.send(err)
-    if (!courseContents || !courseContents.posts) {
+    if (err || !courseContents || !courseContents.posts) {
       res.json({ error: true });
       return;
     }

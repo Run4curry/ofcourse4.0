@@ -138,7 +138,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
           fontWeight: 600,
           weightFactor: 16 
         };
-        console.log(data);
+        //console.log(data);
 
         if (!data.error) {
           WordCloud(document.getElementById('canvas'), options);

@@ -32,9 +32,10 @@ div#post-list
 		div.col-sm-3
 		div.col-sm-6
 			div.form-control.new-comment
-				textarea.comment(placeholder='Enter your thoughts about {{courseAbbreviation}}...' ng-model="commentText")
+				textarea.comment(placeholder='Enter your thoughts about {{courseAbbreviation}}...', ng-model="commentText")
 				button#comment-button.btn.btn-primary.pull-right(ng-click="makePost()") Post
 		div.col-sm-3
+
 	div(ng-repeat='post in postList')
 		div.row(ng-show='post.post != null')
 			div.col-sm-3
@@ -85,6 +86,7 @@ div#post-list
 							button.btn.btn-success(ng-click='cancelReply($index)') Cancel
 
 			div.col-sm-3
-	div(ng-hide='postList.length')
-		p nothing here
+
+	div.leckerli-font(ng-show='postList.length == 1', style='margin-top: 10px;')
+		p No comments yet... Feel free to say anything about {{ courseAbbreviation }} - it's all anonymous!
 

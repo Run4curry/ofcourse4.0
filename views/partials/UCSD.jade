@@ -3,13 +3,13 @@ ol.breadcrumb
 		a(href='/') Of-Course
 	li.breadcrumb-item.active UCSD
 
-form
-	div.form-group
-		div.input-group
-			div.input-group-addon
-				i.glyphicon.glyphicon-search
-			input.form-control(type='text', name='search', placeholder='Search classes...', ng-model='courseFilter')
+
 
 div.list-group
-	a.list-group-item(ng-repeat='class in courseList | filter:courseFilter | limitTo:quantity', href='/UCSD/{{class}}') {{class}}
-	div.list-group-item(ng-click='loadMore()') load more courses...
+	div
+		div.input-group
+			div.input-group-addon(style='border-bottom-left-radius:0')
+				i.glyphicon.glyphicon-search
+			input.form-control#search-bar(type='text', name='search', placeholder='Search classes...', ng-model='courseFilter')
+	a.list-group-item(ng-repeat='class in courseList | filter:courseFilter | limitTo:quantity', href='/UCSD/{{class}}') {{ class }}
+	div.list-group-item(ng-click='loadMore()') Load more courses...
