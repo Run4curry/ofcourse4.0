@@ -72,7 +72,8 @@ hr{
 .navbar-brand {
     color:white; 
     border-bottom: 2px solid white;
-    font-family:'leckerli one', cursive;
+    font-family:'Poiret One', cursive;
+    font-weight: 900;
 }
 
 .footer-text {
@@ -100,8 +101,9 @@ hr{
 /* landing/home page */
 /*********************/
 .leckerli-font {
-    font-family: 'leckerli one', cursive;
+    font-family: 'Poiret One' , cursive;
     color: white;
+    font-weight: 900;
 }
 
 #homebutton {
