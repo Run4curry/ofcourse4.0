@@ -33,7 +33,9 @@
 
 html{
     height: 0%;
-    background-color: #6eb5c0;
+    background-color: #6eb5c0; /*wall*/
+    /*background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-441390.jpg);
+    background-size: cover;*/
 }
 
 body {
@@ -45,7 +47,6 @@ header{
     background-color: #3b5998;
     height: 100%;
     width: 100%;
-    background-size: cover;
 }
 
 footer{
@@ -56,6 +57,7 @@ footer{
     width:100%;
     padding: 3px;
     background-color: #6eb5c0;
+    /*background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-441390.jpg);*/
     text-align: center;
 }
 
@@ -64,7 +66,9 @@ hr{
 }
 
 .navbar {
-    background-color:#6eb5c0; 
+    background-color:#6eb5c0; /*wall*/
+    /*background-color: transparent;
+    background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-441390.jpg);*/
     margin-bottom: 35px;
     border-bottom: 2px solid white;
 }
@@ -91,7 +95,10 @@ hr{
     margin-right: auto;
     padding-left: 15px;
     padding-right: 15px;
-    background-color: #6eb5c0;
+    background-color: transparent;
+    background-color: #6eb5c0;/*wall*/
+    /*background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-441390.jpg);
+    background-size: cover;*/
 }
 /*****************/
 /* end of layout */
