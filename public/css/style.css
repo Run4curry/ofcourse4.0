@@ -286,13 +286,16 @@ div.post-object {
   margin-bottom: 80px;
 }
 .glyphicon-chevron-up {
-  font-size: 20px;
+  font-size: 24px;
 }
 .glyphicon-chevron-down {
-  font-size: 20px;
+  font-size: 24px;
 }
 .glyphicon-comment {
-  font-size: 20px;
+  font-size: 24px;
+}
+.badge {
+  font-size: 40px;
 }
 /**********************/
 /* end of course page */

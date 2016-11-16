@@ -14,13 +14,12 @@ exports.postComment = function (req, res) {
   // push the new post onto the list of posts
   courseSchema.update({course_abbreviation : courseId}, 
     {$push : {"posts" : {"post" : mainpost, "vote" : 0}}},
-    {safe: true, upsert: true},
+    {safe: true, upsert: false},
     function(err, newpost){
-      // TODO: returns the new post
-    });
+     });
   courseSchema.findOne({course_abbreviation : courseId},
     function(err,data){
-
+  
       res.json(data.posts);
     });
 };
