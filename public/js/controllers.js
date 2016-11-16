@@ -152,8 +152,8 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
   };
 
   $scope.replyToComment = function(index) {
-    $scope.replyBoxes[index] = true;
-    $scope.expandedSubComments[index] = true;
+    $scope.replyBoxes[index] = !($scope.replyBoxes[index]);
+    $scope.expandedSubComments[index] = !($scope.expandedSubComments[index]);
   };
 
   $scope.cancelReply = function(index) {

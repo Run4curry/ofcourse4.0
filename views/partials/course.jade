@@ -65,7 +65,7 @@ div#post-list
 								hr
 
 					div.row 
-						div.col-xs-12
+						div.col-xs-12(style="padding : 0px;")
 							div.col-xs-1
 								span.glyphicon.glyphicon-chevron-up(ng-click="upvote(postList.length - $index - 1,$index,post._id)"
 								ng-style="upvoteStyles[$index]")
@@ -74,11 +74,11 @@ div#post-list
 							div.col-xs-1
 								span.glyphicon.glyphicon-chevron-down(ng-click="downvote(postList.length - $index - 1,$index,post._id)"
 								ng-style="downvoteStyles[$index]")
-							div.col-xs-1
-							div.col-xs-1
+							div.col-xs-2
+							div.col-xs-1 
 								span.glyphicon.glyphicon-comment(ng-click='replyToComment($index)')
 							div.col-xs-4
-								{{post.subcomments.length}} replies
+								span(ng-click='replyToComment($index)') {{post.subcomments.length}} replies
 
 
 					div.new-reply(ng-show='replyBoxes[$index] && post.post')
