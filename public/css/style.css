@@ -88,6 +88,7 @@ hr{
     margin-top: 60px;
     margin-bottom: 0px;
     padding-bottom: 0px;
+    font-family: "trebuchet ms", "lucida grande", "lucida sans unicode", "lucida sans", tahoma, sans-serif;
 }
 
 .container {
@@ -172,6 +173,10 @@ a {
   color: #00b7ff;
 } 
 
+.dropdown a:hover {
+  text-decoration: none;
+}
+
 /****************************/
 /* end of landing/home page */
 /****************************/
@@ -180,9 +185,14 @@ a {
 /* ucsd page */
 /*************/
 
+ol li a:hover {
+  text-decoration: none;
+}
+
 div.list-group {
   margin-bottom: 70px;
   border-color: black;
+  font-family: "trebuchet ms", "lucida grande", "lucida sans unicode", "lucida sans", tahoma, sans-serif;
 }
 
 .input-group-addon {
@@ -248,6 +258,7 @@ div.post-object {
     height: 100%;
     width: 100%;
     border: none;
+    font-family: "trebuchet ms", "lucida grande", "lucida sans unicode", "lucida sans", tahoma, sans-serif;
 }
 
 #comment-button {
