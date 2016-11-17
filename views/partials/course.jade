@@ -21,7 +21,7 @@ ol.breadcrumb
 			i.glyphicon.glyphicon-search
 
 // test word cloud
-div
+div(ng-hide='!postList || postList.length == 1')
 	div.leckerli-font#empty-canvas(ng-click='wordCloud()', ng-hide='showCanvas') Click to create a word cloud!
 	canvas#canvas(ng-show='showCanvas', ng-click='wordCloud()')
 	//button.btn.btn-warning#wordcloud-btn(ng-hide='showCanvas', ng-click='wordCloud()') WordCloud
