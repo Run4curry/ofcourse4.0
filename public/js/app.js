@@ -16,6 +16,10 @@ angular.module('ofcourse', ['ngCookies']).
         templateUrl: 'partials/course',
         controller: CourseCtrl
       }).
+      when('/UCSD/:id/b', {
+        templateUrl: 'partials/courseB',
+        controller: CourseCtrl
+      }).
       otherwise({
         redirectTo: '/'
       });
