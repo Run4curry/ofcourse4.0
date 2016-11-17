@@ -1,6 +1,6 @@
 ol.breadcrumb
 	li.breadcrumb-item 
-		a(href='/') Of-Course
+		a(href='/') Of Course
 	li.breadcrumb-item 
 		a(href='/UCSD') UCSD
 	li.breadcrumb-item.active {{courseAbbreviation}}
@@ -84,7 +84,7 @@ div#post-list
 					div.new-reply(ng-show='replyBoxes[$index] && post.post')
 						div.form-control.new-comment(style='margin-bottom:50px')
 							textarea.comment(placeholder='Type in a reply here...', ng-model='reply.text') 
-							button.btn.btn-primary(type="button" ng-click='makeSubPost(postList.length - $index -1)') Reply or Post
+							button.btn.btn-primary(type="button" ng-click='makeSubPost(postList.length - $index -1)') Reply
 							button.btn.btn-success(ng-click='cancelReply($index)') Cancel
 
 			div.col-sm-3

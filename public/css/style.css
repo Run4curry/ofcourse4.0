@@ -101,6 +101,10 @@ hr{
     /*background-image: url(https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-441390.jpg);
     background-size: cover;*/
 }
+
+a.navbar-brand:focus, a.navbar-brand:hover {
+  color: white;
+}
 /*****************/
 /* end of layout */
 /*****************/
