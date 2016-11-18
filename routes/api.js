@@ -64,31 +64,44 @@ exports.postSubComment = function(req,res) {
 // PUT - Update vote count for sub comment
 exports.subvote = function(req,res){
   var courseId = req.params.course;
+  var objectId = req.params.postid;
+  var subobjectId = req.params.subpostid;
   var val = parseInt(req.params.val);
-  var index = parseInt(req.params.ind);
-  var subindex = parseInt(req.params.ind2);
 
   courseSchema.findOne({course_abbreviation : courseId}, 
     function(err,data){
-      data.posts[index].subvotes[subindex].subvote += val;
-      data.save();
-      res.json(data.posts);
+      for(var i = 0; i < data.posts.length ; i++){
+        if(data.posts[i]._id == objectId){
+          for(var j = 0; j < data.posts[i].subcomments.length; j++){
+            if(data.posts[i].subcomments[j]._id == subobjectId){
+              data.posts[i].subvotes[j].subvote += val;
+              data.save();
+              res.json(data.posts);
+              return;              
+            }
+          }
+        }
+      }
     });
 };
 
 // PUT - Update vote count
 exports.vote = function(req,res) {
   var courseId = req.params.course;
+  var objectId = req.params.objid;
   var val = parseInt(req.params.val);
-  var index = parseInt(req.params.ind);
   
   courseSchema.findOne({course_abbreviation : courseId},
     function(err, data){
       if (err) console.log(err);
-
-      data.posts[index].vote += val;
-      data.save();
-      res.json(data.posts);         
+      for(var i = 0; i < data.posts.length; i++){
+        if(data.posts[i]._id == objectId){
+          data.posts[i].vote += val;
+          data.save();
+          res.json(data.posts);
+          return;
+        }
+      }     
     });
 };
 
