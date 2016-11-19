@@ -57,11 +57,11 @@ div#post-list
 								br
 								div.row
 									div.col-sm-2
-										span.glyphicon.glyphicon-chevron-up(ng-click="subUpvote(postList.length -$parent.$index - 1,$index,subcomment._id,$parent.$index)" ng-style="subUpvoteStyles[$parent.$index][$index]")
+										span.glyphicon.glyphicon-chevron-up(ng-click="subUpvote(postList.length -$parent.$index - 1,$index,subcomment._id,$parent.$index,$parent.post._id)" ng-style="subUpvoteStyles[$parent.$index][$index]")
 									div.col-sm-2
 										span.badge {{ post.subvotes[$index].subvote }}
 									div.col-sm-2
-										span.glyphicon.glyphicon-chevron-down(ng-click="subDownvote(postList.length -$parent.$index - 1,$index,subcomment._id,$parent.$index)" ng-style="subDownvoteStyles[$parent.$index][$index]") 
+										span.glyphicon.glyphicon-chevron-down(ng-click="subDownvote(postList.length -$parent.$index - 1,$index,subcomment._id,$parent.$index,$parent.post._id)" ng-style="subDownvoteStyles[$parent.$index][$index]") 
 								hr
 
 					div.row 
