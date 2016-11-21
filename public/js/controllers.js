@@ -55,7 +55,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
       for (var i = 0; i < $scope.glyphColors.length; i++){
         if($scope.glyphColors[i] == 1){
           $scope.upvoteStyles.push({
-            color : 'green'
+            color : '#6eb5c0'
           });
         }
         else{
@@ -73,7 +73,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
         }
         else if($scope.glyphColors[i] == -1){
           $scope.downvoteStyles.push({
-            color : 'red'
+            color : '#6eb5c0'
           });
         }
         else{
@@ -95,7 +95,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
         for(var j = 0; $scope.postList && j < $scope.postList[i].subcomments.length; j++){
           if($cookieStore.get($scope.postList[i].subcomments[j]._id) == 1){
             $scope.subUpvoteStyles[i].push({
-              color : 'green'
+              color : '#6eb5c0'
             });
             $scope.subDownvoteStyles[i].push({
               color : ''
@@ -106,7 +106,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
               color : ''
             });
             $scope.subDownvoteStyles[i].push({
-              color : 'red'
+              color : '#6eb5c0'
             });
           }
           else{
@@ -186,7 +186,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
         $scope.postList = data; 
         $scope.postList.reverse();
         $scope.upvoteStyles[displayindex] = {
-            color : 'green'
+            color : '#6eb5c0'
           }
         $scope.downvoteStyles[displayindex] = {
           color : ''
@@ -201,7 +201,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
        $scope.postList = data;
         $scope.postList.reverse();
        $scope.upvoteStyles[displayindex] = {
-        color : 'green'
+        color : '#6eb5c0'
        } 
     });
     }
@@ -230,7 +230,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
           color : ''
          } 
          $scope.downvoteStyles[displayindex] = {
-          color : 'red'
+          color : '#6eb5c0'
          }
       });
     }
@@ -241,7 +241,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
        $scope.postList = data;
         $scope.postList.reverse();
        $scope.downvoteStyles[displayindex] = {
-        color : 'red'
+        color : '#6eb5c0'
        } 
     });
     }
@@ -270,7 +270,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
         $scope.postList = data; 
         $scope.postList.reverse();
         $scope.subUpvoteStyles[displayindex][childindex] = {
-          color : 'green'
+          color : '#6eb5c0'
         }
         $scope.subDownvoteStyles[displayindex][childindex] = {
           color : ''
@@ -284,7 +284,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
        $scope.postList = data;
         $scope.postList.reverse();
        $scope.subUpvoteStyles[displayindex][childindex] = {
-        color : 'green'
+        color : '#6eb5c0'
        } 
     });
     }
@@ -310,7 +310,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
          $scope.postList = data;
          $scope.postList.reverse();
          $scope.subDownvoteStyles[displayindex][childindex] = {
-          color : 'red'
+          color : '#6eb5c0'
          } 
          $scope.subUpvoteStyles[displayindex][childindex] = {
           color : ''
@@ -324,7 +324,7 @@ function CourseCtrl($scope, $http, $routeParams, $route ,$cookies, $cookieStore)
        $scope.postList = data;
        $scope.postList.reverse();
        $scope.subDownvoteStyles[displayindex][childindex] = {
-        color : 'red'
+        color : '#6eb5c0'
        } 
     });
     }
