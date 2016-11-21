@@ -33,7 +33,7 @@ div#post-list
 		div.col-sm-6.comment-box
 			div.form-control.new-comment
 				textarea.comment(placeholder='Enter your thoughts about {{courseAbbreviation}}...', ng-model="commentText")
-				a.myButton.pull-right(ng-click="makePost()") Post
+				span.myButton.pull-right(ng-click="makePost()") Post
 		div.col-sm-3
 
 	div(ng-repeat='post in postList')
@@ -44,6 +44,8 @@ div#post-list
 					div.row
 						div.pull-left.post-list-item
 							p.post-text {{post.post}}
+						div.pull-right.post-list-item
+							p.post-text {{post.date}}
 					hr
 
 					div.row 
@@ -61,14 +63,14 @@ div#post-list
 								span.glyphicon.glyphicon-comment(ng-click='replyToComment($index)')
 							div.col-xs-4
 								span(ng-click='replyToComment($index)') {{post.subcomments.length}} replies
-
+					hr
 
 					div.subcomment-list(ng-show='post.subcomments.length && post.post') 
 						ul(ng-show='expandedSubComments[$index]', style='list-style:none; margin-left: 30px')
 							li(ng-repeat='subcomment in post.subcomments') 
 								div.row
 									div.pull-left {{ subcomment.subcomment }}
-											div.pull-right
+									div.pull-right {{post.subdates[$index].subdate}}
 								br
 								br
 								div.row
@@ -87,8 +89,8 @@ div#post-list
 					div.new-reply(ng-show='replyBoxes[$index] && post.post')
 						div.form-control.new-comment(style='margin-bottom:50px')
 							textarea.comment(placeholder='Type in a reply here...', ng-model='reply.text') 
-							a.myButton(type="button" ng-click='makeSubPost(postList.length - $index -1)') Reply
-							a.myButton(ng-click='cancelReply($index)') Cancel
+							span.myButton(type="button" ng-click='makeSubPost(postList.length - $index -1)') Reply
+							span.myButton(ng-click='cancelReply($index)') Cancel
 
 			div.col-sm-3
 
