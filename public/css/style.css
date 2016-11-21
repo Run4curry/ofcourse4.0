@@ -238,9 +238,10 @@ div.list-group {
 }
 
 #wordcloud-btn {
-  margin-left: auto;
-  margin-right: auto; 
+  text-align: center;
+  margin: auto;
   display: block;
+  width : 120px;
 }
 
 div.new-comment {
