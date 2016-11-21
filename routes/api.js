@@ -12,8 +12,13 @@ exports.postComment = function (req, res) {
   var mainpost = req.params.mainpost;
   console.log("I am in post comment function");
   // push the new post onto the list of posts
+  var date = new Date();
+  //extract month, year, and day fields from date object 
+  var month = date.getUTCMonth() + 1;
+  var year = date.getUTCFullYear();
+  var day = date.getUTCDate();
   courseSchema.update({course_abbreviation : courseId}, 
-    {$push : {"posts" : {"post" : mainpost, "vote" : 0}}},
+    {$push : {"posts" : {"post" : mainpost, "vote" : 0, "date" : month + '/' + day + '/' + year}}},
     {safe: true, upsert: false},
     function(err, newpost){
      });
@@ -50,12 +55,19 @@ exports.postSubComment = function(req,res) {
   var subcomment = req.params.subcomment;
   var index = parseInt(req.params.postind);
 
+  var date = new Date();
+  //extract month, year, and day fields from date object 
+  var month = date.getUTCMonth() + 1;
+  var year = date.getUTCFullYear();
+  var day = date.getUTCDate();
+
   console.log("I am in subcomment function");
 
   courseSchema.findOne({course_abbreviation : courseId},
     function(err, data){
       data.posts[index].subcomments.push({subcomment : subcomment});
       data.posts[index].subvotes.push({subvote : 0});
+      data.posts[index].subdates.push({subdate : month + '/' + day + '/' + year});
       data.save();
       res.json(data.posts);
     });
