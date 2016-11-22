@@ -4,27 +4,18 @@ ol.breadcrumb
 	li.breadcrumb-item 
 		a(href='/UCSD') UCSD
 	li.breadcrumb-item.active {{courseAbbreviation}}
+script.
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-87780359-1', 'auto');
+	ga('send', 'pageview');
 
-
-// search bar 
-//form
-	div.form-group
-		div.input-group
-			div.input-group-addon
-				i.glyphicon.glyphicon-search
-			input.form-control(type='text', name='search', placeholder='Search classes...', ng-model='courseFilter')
-
-//div.input-group
-	input.form-control(type='text', name='search', placeholder='Search classes...')
-	div.input-group-btn
-		button.btn.btn-default(type='submit')
-			i.glyphicon.glyphicon-search
-
-// test word cloud
 div(ng-hide='!postList || postList.length == 1')
 	div.leckerli-font#empty-canvas(ng-click='wordCloud()', ng-hide='showCanvas') Click to create a word cloud!
 	canvas#canvas(ng-show='showCanvas')
-	//button.btn.btn-warning#wordcloud-btn(ng-hide='showCanvas', ng-click='wordCloud()') WordCloud
+//button.btn.btn-warning#wordcloud-btn(ng-hide='showCanvas', ng-click='wordCloud()') WordCloud
 
 // list of posts
 div#post-list
