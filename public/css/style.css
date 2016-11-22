@@ -253,7 +253,10 @@ div.new-comment {
 div.post-object {
   border-color : #a6a6a6;
   background-color: white;
-  padding: 30px;
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 1px;
   margin : 10px;
 }
 div.comment-box {
