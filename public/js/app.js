@@ -16,7 +16,7 @@ angular.module('ofcourse', ['ngCookies']).
         templateUrl: 'partials/course',
         controller: CourseCtrl
       }).
-      when('/UCSD/:id/b', {
+      when('/UCSD/b/:id', {
         templateUrl: 'partials/courseB',
         controller: CourseCtrl
       }).
