@@ -7,7 +7,6 @@ var express = require('express');
 var routes  = require('./routes');
 var api  = require('./routes/api');
 var favicon = require('serve-favicon');
-var ga = require('connect-ganalytics');
 var PORT = process.env.PORT || 3000;
 
 
@@ -21,7 +20,6 @@ app.configure(function(){
   app.set('view options', {
     layout: false
   });
-  app.use(ga('UA-87780359-1'));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.static(__dirname + '/public'));
