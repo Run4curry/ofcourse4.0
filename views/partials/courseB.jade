@@ -10,7 +10,7 @@ ol.breadcrumb
 div(ng-hide='!postList || postList.length == 1')
 //div.leckerli-font#empty-canvas(ng-click='wordCloud()', ng-hide='showCanvas') Click to create a word cloud!
 canvas#canvas(ng-show='showCanvas')
-span.myButton#wordcloud-btn(ng-hide='showCanvas', ng-click='wordCloud()' , onClick="ga('send','event','buttonwordcloud','click B','versionB');") WordCloud
+span.myButton#wordcloud-btn(ng-hide='showCanvas || !postList || postList.length == 1', ng-click='wordCloud()' , onClick="ga('send','event','buttonwordcloud','click B','versionB');") WordCloud
 
 // list of posts
 div#post-list

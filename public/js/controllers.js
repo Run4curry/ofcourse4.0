@@ -24,7 +24,8 @@ function UcsdCtrl($scope, $http, $location) {
 function CourseCtrl($scope, $http, $location, $route ,$cookies, $cookieStore) {
   $scope.showCanvas = false;
 
-  var routeId = $location.search.id;
+  var routeId = $location.search().id;
+  console.log(routeId);
 
    function ReorgPosts(){
       console.log("Reorganizing");
