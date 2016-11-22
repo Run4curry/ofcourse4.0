@@ -9,5 +9,5 @@ div.list-group
 			div.input-group-addon(style='border-bottom-left-radius:0')
 				i.glyphicon.glyphicon-search
 			input.form-control#search-bar(type='text', name='search', placeholder='Search classes...', ng-model='courseFilter')
-	a.list-group-item(ng-repeat='class in courseList | filter:courseFilter | limitTo:quantity', href='/UCSD/{{class}}') {{ class }}
+	a.list-group-item(ng-repeat='class in courseList | filter:courseFilter | limitTo:quantity', href='/UCSD/course?id={{class}}') {{ class }}
 	div.list-group-item(ng-click='loadMore()') Load more courses...
