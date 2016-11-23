@@ -5,9 +5,9 @@ ol.breadcrumb
 
 div.list-group
 	div
-		div.input-group
+		nav.navbar.navbar-fixed-top
 			div.input-group-addon(style='border-bottom-left-radius:0')
 				i.glyphicon.glyphicon-search
-			input.form-control#search-bar(type='text', name='search', placeholder='Search classes...', ng-model='courseFilter' , onClick="ga('send','event','notfixed','click A','versionA');")
+			input.form-control#search-bar(type='text', name='search', placeholder='Search classes...', ng-model='courseFilter' , onClick="ga('send','event','fixedbar','click B','versionB');")
 	a.list-group-item(ng-repeat='class in courseList | filter:courseFilter | limitTo:quantity', href='/UCSD/{{class}}') {{ class }}
 	div.list-group-item(ng-click='loadMore()') Load more courses...

@@ -12,11 +12,11 @@ angular.module('ofcourse', ['ngCookies']).
         templateUrl: 'partials/UCSD',
         controller: UcsdCtrl
       }).
-      // when('/UCSD/:id', {
-      //   templateUrl: 'partials/course',
-      //   controller: CourseCtrl
-      // }).
-      when('/UCSD/course', {
+       when('/UCSD/b', {
+         templateUrl: 'partials/UCSDalt',
+         controller: UcsdCtrl
+       }).
+      when('/UCSD/:id', {
         templateUrl: 'partials/course',
         controller: CourseCtrl
       }).
