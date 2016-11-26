@@ -118,6 +118,11 @@ a.navbar-brand:focus, a.navbar-brand:hover {
     color: white;
     font-weight: 900;
 }
+.leckerli-font2 {
+    font-family: 'Poiret One' , cursive;
+    color: #6eb5c0;
+    font-weight: 900;
+}
 
 #homebutton {
   position: relative;
@@ -130,6 +135,19 @@ a.navbar-brand:focus, a.navbar-brand:hover {
   width: 25%;
 
   text-align: center;
+}
+#postbutton{
+  border: 2px solid white;
+  font-size: 25px;
+  padding-left : 20px;
+  padding-right : 20px;
+  margin: 2px;
+}
+#subbuttons {
+  border : 2px solid #6eb5c0;
+  padding : 2px;
+  font-size: 20px;
+  margin: 2px;
 }
 
 .black-font {
