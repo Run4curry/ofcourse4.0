@@ -27,8 +27,7 @@ div#post-list
 			div.col-sm-6
 				div.post-object
 					div.row
-						div.pull-left.post-list-item
-							p.post-text {{post.post}}
+						div.pull-left.post-list-item.post-text(style='word-wrap:break-word') {{post.post}}
 						div.pull-right.post-list-item
 							p.post-text {{post.date}}
 					hr
@@ -51,10 +50,10 @@ div#post-list
 					hr
 
 					div.subcomment-list(ng-show='post.subcomments.length && post.post') 
-						ul(ng-show='expandedSubComments[$index]', style='list-style:none; margin-left: 30px')
+						ul(ng-show='expandedSubComments[$index]', style='list-style:none; margin-left: 15px')
 							li(ng-repeat='subcomment in post.subcomments') 
 								div.row
-									div.pull-left {{ subcomment.subcomment }}
+									div.pull-left(style='width:60%;word-wrap:break-word') {{ subcomment.subcomment }}
 									div.pull-right {{post.subdates[$index].subdate}}
 								br
 								br
@@ -67,9 +66,6 @@ div#post-list
 										div.col-xs-2
 											span.glyphicon.glyphicon-chevron-down(ng-click="subDownvote(postList.length -$parent.$index - 1,$index,subcomment._id,$parent.$index,$parent.post._id)" ng-style="subDownvoteStyles[$parent.$index][$index]") 
 								hr
-
-
-
 
 					div.new-reply(ng-show='replyBoxes[$index] && post.post')
 						div.form-control.new-comment(style='margin-bottom:50px')
