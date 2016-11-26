@@ -18,7 +18,7 @@ div#post-list
 		div.col-sm-3
 		div.col-sm-6.comment-box
 			div.form-control.new-comment
-				textarea.comment(placeholder='Enter your thoughts about {{courseAbbreviation}}...', ng-model="commentText")
+				textarea.comment(placeholder='Enter your thoughts about {{courseAbbreviation}}...', ng-model="commentText" span.myButton.pull-right(ng-click="makePost()") Post)
 				span.myButton.pull-right(ng-click="makePost()") Post
 		div.col-sm-3
 
