@@ -38,6 +38,7 @@ html{
     background-size: cover;*/
 }
 
+
 body {
   height: 100%;   
   background-color: #4a93d8;
@@ -142,11 +143,13 @@ a.navbar-brand:focus, a.navbar-brand:hover {
   padding-left : 20px;
   padding-right : 20px;
   margin: 2px;
+  background-color: #6eb5c0;
 }
 #subbuttons {
   border : 2px solid #6eb5c0;
   padding : 2px;
   font-size: 20px;
+  background-color: white;
   margin: 2px;
 }
 
