@@ -18,7 +18,7 @@ div#post-list
 		div.col-sm-6.comment-box
 			div.form-control.new-comment
 				textarea.comment(placeholder='Enter your thoughts about {{courseAbbreviation}}...', ng-model="commentText")
-				span#postbutton.leckerli-font.pull-right(ng-click="makePost()") Post
+				button#postbutton.leckerli-font.pull-right(ng-click="makePost()") Post
 		div.col-sm-3
 
 	div(ng-repeat='post in postList')
@@ -70,8 +70,8 @@ div#post-list
 					div.new-reply(ng-show='replyBoxes[$index] && post.post')
 						div.form-control.new-comment(style='margin-bottom:50px')
 							textarea.comment(placeholder='Type in a reply here...', ng-model='reply.text') 
-							span#subbuttons.leckerli-font2(ng-click='makeSubPost(postList.length - $index -1)') Reply
-							span#subbuttons.leckerli-font2(ng-click='cancelReply($index)') Cancel
+							button#subbuttons.leckerli-font2(ng-click='makeSubPost(postList.length - $index -1)') Reply
+							button#subbuttons.leckerli-font2(ng-click='cancelReply($index)') Cancel
 
 			div.col-sm-3
 
